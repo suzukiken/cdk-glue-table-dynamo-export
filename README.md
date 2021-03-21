@@ -1,14 +1,28 @@
-# Welcome to your CDK TypeScript project!
+# Example CDK TypeScript Project
 
-This is a blank project for TypeScript development with CDK.
+To deploy AWS ApiGateway which responds source ip address.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Install and deploy
 
-## Useful commands
+* `npm install`
+* `cdk deploy`
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+## description
+
+https://figmentresearch.com/aws/cdkgluetable-dynamoexport
+
+## How to try
+
+```
+cd test
+gunzip sample.json.gz
+aws s3 cp sample.json s3://<bucket name>/data/
+```
+
+### sample query on Athena
+
+```
+SELECT * FROM cdkgluetabledynamoexport_table where item.id.s = 'order-245-0343447-999530';
+SELECT item.id.s, item.address.m.name.s, item.items.l[1].m.sku.s FROM cdkgluetabledynamoexport_table limit 10;
+SELECT item.id.s, item.address.m.name.s, product.m.sku.s FROM cdkgluetabledynamoexport_table CROSS JOIN UNNEST(item.items.L) AS unnested (product) limit 10;
+```
