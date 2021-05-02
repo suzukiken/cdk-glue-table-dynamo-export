@@ -9,7 +9,7 @@ To deploy AWS ApiGateway which responds source ip address.
 
 ## description
 
-https://figmentresearch.com/aws/cdkgluetable-dynamoexport
+https://note.figmentresearch.com/aws/cdkgluetable-dynamoexport
 
 ## How to try
 
